@@ -654,12 +654,12 @@ class PrometheusServiceDiscoveryHandler(BaseHandler):
             if entry.web_port is None:
                 continue
             labels = {
-                "__meta_name": entry.name,
-                "__meta_esp_platform": entry.target_platform,
-                "__meta_esphome_version": entry.storage.esphome_version,
+                "__meta_esphome_device_name": entry.name,
+                "__meta_esphome_device_platform": entry.target_platform,
+                "__meta_esphome_device_version": entry.storage.esphome_version,
             }
             for integration in entry.storage.loaded_integrations:
-                labels[f"__meta_integration_{integration}"] = "true"
+                labels[f"__meta_esphome_device_integration_{integration}"] = "true"
             sd.append(
                 {
                     "targets": [
